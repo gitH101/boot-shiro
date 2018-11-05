@@ -6,7 +6,7 @@
     <groupId>com.example</groupId>
     <artifactId>boot-shiro</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <packaging>pom</packaging>
+    <packaging>jar</packaging>
 
     <name>boot-shiro</name>
     <description>Demo project for Spring Boot</description>
