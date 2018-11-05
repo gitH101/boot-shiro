@@ -1,0 +1,75 @@
+server:
+  port: 9092
+  servlet:
+    context-path: /ac
+
+spring:
+  application:
+    name: ops-api
+  datasource:
+    url: jdbc:mysql://127.0.0.1:3306/test?useUnicode=true&characterEncoding=UTF-8&autoReconnect=true&useSSL=false&zeroDateTimeBehavior=convertToNull
+    username: root
+    password: 11
+    driver-class-name: com.mysql.jdbc.Driver
+    hikari:
+      minimum-idle: 5
+      maximum-pool-size: 15
+      auto-commit: true
+      idle-timeout: 3000
+      pool-name: DatebookHikariCP
+  dubbo:
+#    server: true
+#    registry: zookeeper://192.168.8.134:2181
+     registry: zookeeper://127.0.0.1:2181
+  rabbitmq:
+    host: 192.168.8.152
+    port: 5672
+    username: jumstc
+    password: jumstc
+    publisher-confirms: true
+    vhost: ops
+    connection:
+      timeout: 3000
+  redis:
+    database: 2
+    host: 127.0.0.1
+    port: 6379
+#    password: jumeng2018!
+    timeout: 5000
+    pool:
+      # 最大空闲连接数
+      max-idle: 8
+      # 最小空闲连接数
+      min-idle: 0
+      # 最大活跃连接数
+      max-active: 8
+      # 获取连接时的最大等待毫秒数(-1阻塞不确定的时间)
+      max-wait: -1
+
+dubbo:
+  bole:
+    group: com.jumstc.bole
+    version: 1.0
+  hsf:
+    group: HSF
+    version: 1.0.2
+
+mybatis:
+  type-aliases-package: com.example.entity
+  mapper-locations: classpath:com/example/mapper/*.xml
+
+
+mapper:
+  mappers: MyMapper
+  not-empty: false
+  identity: MYSQL
+
+pagehelper:
+  helperDialect: mysql
+  reasonable: true
+  supportMethodsArguments: true
+  params: count=countSql
+
+logging:
+  level:
+    com.jumstc.ops.console.mapper: debug

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.mapper.RoleInfoDao">
+  <resultMap id="BaseResultMap" type="com.example.entity.RoleInfo">
+    <!--
+    @mbggenerated
+    -->
+    <id column="ID" jdbcType="INTEGER" property="id" />
+    <result column="ROLE_CODE" jdbcType="VARCHAR" property="roleCode" />
+    <result column="ROLE_NAME" jdbcType="VARCHAR" property="roleName" />
+    <result column="CREATE_BY" jdbcType="VARCHAR" property="createBy" />
+    <result column="CREATE_DATE" jdbcType="TIMESTAMP" property="createDate" />
+    <result column="MODIFIED_BY" jdbcType="VARCHAR" property="modifiedBy" />
+    <result column="MODIFIED_DATE" jdbcType="TIMESTAMP" property="modifiedDate" />
+    <result column="SORTNO" jdbcType="INTEGER" property="sortno" />
+    <result column="STATE" jdbcType="INTEGER" property="state" />
+  </resultMap>
+
+  <select id="queryRoleByUser" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select * from role_info where role_code in (select role_code from )
+  </select>
+</mapper>
