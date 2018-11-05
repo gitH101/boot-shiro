@@ -4,11 +4,11 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.example</groupId>
-    <artifactId>demo</artifactId>
+    <artifactId>boot-shiro</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <packaging>pom</packaging>
 
-    <name>dalong</name>
+    <name>boot-shiro</name>
     <description>Demo project for Spring Boot</description>
 
     <parent>
@@ -182,7 +182,7 @@
     </dependencies>
 
     <build>
-        <finalName>console</finalName>
+        <finalName>boot-shiro</finalName>
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
