@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <title>用户列表</title>
+    <link href="/css/main.css" rel="stylesheet" />
+</head>
+<body>
+    <form action="/ac/auth/login2" method="post">
+        <div>用户名：<input type="text" name="userCode" /> </div>
+        <div>密&nbsp;&nbsp;码：<input type="text" name="userPwd" /></div>
+        <div style="color:red" th:text="${tips}" />
+        <div><input type="submit" /></div>
+    </form>
+
+
+</body>
+</html>

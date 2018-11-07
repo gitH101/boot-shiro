@@ -2,11 +2,11 @@ package com.example.config;
 
 import com.example.common.MyRealm;
 import com.example.common.redis.RedisCacheManager;
+import com.example.common.redis.RedisManager;
 import com.example.common.redis.RedisSessionDAO;
 import com.example.common.shiro.ShiroSessionFactory;
 import com.example.common.shiro.ShiroSessionListener;
 import com.example.common.shiro.ShiroSessionManager;
-import com.example.common.redis.RedisManager;
 import org.apache.shiro.authc.credential.SimpleCredentialsMatcher;
 import org.apache.shiro.session.SessionListener;
 import org.apache.shiro.session.mgt.SessionManager;
@@ -98,13 +98,18 @@ public class ShiroConfiguration {
         ShiroFilterFactoryBean filterFactoryBean = new ShiroFilterFactoryBean();
         filterFactoryBean.setSecurityManager(securityManager);
         // 配置登录的url和登录成功的url
-        filterFactoryBean.setLoginUrl("/auth/login");
-        filterFactoryBean.setSuccessUrl("/home");
+        filterFactoryBean.setLoginUrl("/auth/index");
+        filterFactoryBean.setSuccessUrl("/swagger-ui.html");
         // 配置未授权跳转页面
         filterFactoryBean.setUnauthorizedUrl("/errorPage/403");
         // 配置访问权限
         LinkedHashMap<String, String> filterChainDefinitionMap = new LinkedHashMap<>();
         filterChainDefinitionMap.put("/auth/**", "anon");// 表示可以匿名访问
+        filterChainDefinitionMap.put("/swagger-ui.html", "anon");
+        filterChainDefinitionMap.put("/webjars/springfox-swagger-ui/**", "anon");
+        filterChainDefinitionMap.put("/images/**", "anon");
+        filterChainDefinitionMap.put("/swagger-resources/**", "anon");
+        filterChainDefinitionMap.put("/v2/**", "anon");
         filterChainDefinitionMap.put("/admin/**", "roles[admin]");// 表示admin权限才可以访问，多个加引号用逗号相隔
         filterChainDefinitionMap.put("/*", "authc");// 表示需要认证才可以访问
         filterChainDefinitionMap.put("/**", "authc");

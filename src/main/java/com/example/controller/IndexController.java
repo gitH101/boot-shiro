@@ -2,9 +2,13 @@ package com.example.controller;
 
 import com.example.common.Result;
 import com.example.entity.UserInfo;
-import com.example.exceptions.OPCException;
 import com.example.enums.OPCExceptionEnum;
 import com.example.enums.RoleEnum;
+import com.example.exceptions.OPCException;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiImplicitParams;
+import io.swagger.annotations.ApiOperation;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.DisabledAccountException;
@@ -13,17 +17,41 @@ import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.subject.Subject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
-@RestController
+@Controller
 @RequestMapping("/auth")
+@Api(value = "IndexController|用户登录注销操作")
 public class IndexController {
 
     private static Logger logger = LoggerFactory.getLogger(IndexController.class);
 
-    @RequestMapping("/login")
+    @GetMapping("/index")
+    public String index(){
+        return "index";
+    }
+
+    @PostMapping("/login2")
+    public ModelAndView login2(UserInfo userInfo){
+        Result result = loginIn(userInfo);
+        if(result.getCode() == 200){
+            return new ModelAndView("redirect:/swagger-ui.html");
+        }else {
+            ModelAndView modelAndView = new ModelAndView("index");
+            modelAndView.addObject("tips","登录失败");
+            return modelAndView;
+        }
+    }
+
+    @PostMapping("/login")
+    @ResponseBody
+    @ApiOperation(value="用户登录", notes="test: 仅1和2有正确返回")
+    @ApiImplicitParams({
+            @ApiImplicitParam(paramType="query", name = "userCode", value = "用户编码", required = true, dataType = "String"),
+            @ApiImplicitParam(paramType="query", name = "userPwd", value = "用户密码", required = true, dataType = "String"),
+    })
     public Result loginIn(@RequestBody UserInfo userInfo) {
         // shiro认证
         Subject subject = SecurityUtils.getSubject();
