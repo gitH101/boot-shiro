@@ -5,6 +5,7 @@ import com.example.entity.UserInfo;
 import com.example.enums.OPCExceptionEnum;
 import com.example.enums.RoleEnum;
 import com.example.exceptions.OPCException;
+import com.example.vo.UserInfoVo;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
@@ -18,6 +19,7 @@ import org.apache.shiro.subject.Subject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -34,7 +36,7 @@ public class IndexController {
     }
 
     @PostMapping("/login2")
-    public ModelAndView login2(UserInfo userInfo){
+    public ModelAndView login2(UserInfoVo userInfo){
         Result result = loginIn(userInfo);
         if(result.getCode() == 200){
             return new ModelAndView("redirect:/swagger-ui.html");
@@ -52,7 +54,7 @@ public class IndexController {
             @ApiImplicitParam(paramType="query", name = "userCode", value = "用户编码", required = true, dataType = "String"),
             @ApiImplicitParam(paramType="query", name = "userPwd", value = "用户密码", required = true, dataType = "String"),
     })
-    public Result loginIn(@RequestBody UserInfo userInfo) {
+    public Result loginIn(@RequestBody @Validated UserInfoVo userInfo) {
         // shiro认证
         Subject subject = SecurityUtils.getSubject();
         UsernamePasswordToken token = new UsernamePasswordToken(userInfo.getUserCode(), userInfo.getUserPwd());

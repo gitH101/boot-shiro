@@ -1,7 +1,7 @@
 package com.example.enums;
 
 public enum  OPCExceptionEnum {
-
+    PARAN_NULL_ERR(10000,"no role"),
     NO_ROLE(10001,"no role");
 
     private int code;
