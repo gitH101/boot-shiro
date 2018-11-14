@@ -1,6 +1,8 @@
 package com.example.service;
 
+import com.alibaba.dubbo.config.annotation.Service;
 import com.example.entity.User;
+import com.example.interfaces.UserInterface;
 import com.example.mapper.UserRoleRDao;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
@@ -11,13 +13,12 @@ import com.example.mapper.UserMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 import tk.mybatis.mapper.entity.Example;
 
 import java.util.List;
 
 @Service
-public class UserService {
+public class UserService implements UserInterface {
 
     @Autowired
     private UserMapper userMapper;

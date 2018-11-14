@@ -17,9 +17,9 @@ spring:
       auto-commit: true
       idle-timeout: 3000
       pool-name: DatebookHikariCP
-  dubbo:
-#    server: true
-     registry: zookeeper://127.0.0.1:2181
+#  dubbo:
+##    server: true
+#     registry: zookeeper://127.0.0.1:2181
   rabbitmq:
     host: 127.0.0.1
     port: 5672
@@ -35,12 +35,20 @@ spring:
     port: 6379
 
 dubbo:
-  bole:
-    group: com.jumstc.bole
-    version: 1.0
-  hsf:
-    group: HSF
-    version: 1.0.2
+  scan:
+    basePackages: com.example.service
+  application:
+    id: ops-api-web
+    name: ops-api-web
+    qos-port: 12306
+    qos-enable: false
+  protocol:
+    id: dubbo
+    name: dubbo
+    port: 12340
+  registry:
+    id: ops
+    address: zookeeper://127.0.0.1:2181
 
 mybatis:
   type-aliases-package: com.example.entity
