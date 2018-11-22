@@ -4,9 +4,7 @@ import com.example.common.MyRealm;
 import com.example.common.redis.RedisCacheManager;
 import com.example.common.redis.RedisManager;
 import com.example.common.redis.RedisSessionDAO;
-import com.example.common.shiro.ShiroSessionFactory;
-import com.example.common.shiro.ShiroSessionListener;
-import com.example.common.shiro.ShiroSessionManager;
+import com.example.common.shiro.*;
 import org.apache.shiro.authc.credential.SimpleCredentialsMatcher;
 import org.apache.shiro.session.SessionListener;
 import org.apache.shiro.session.mgt.SessionManager;
@@ -24,9 +22,8 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.LinkedHashMap;
+import javax.servlet.Filter;
+import java.util.*;
 
 @Configuration
 public class ShiroConfiguration {
@@ -98,7 +95,7 @@ public class ShiroConfiguration {
         ShiroFilterFactoryBean filterFactoryBean = new ShiroFilterFactoryBean();
         filterFactoryBean.setSecurityManager(securityManager);
         // 配置登录的url和登录成功的url
-        filterFactoryBean.setLoginUrl("/auth/index");
+//        filterFactoryBean.setLoginUrl("/auth/index");
         filterFactoryBean.setSuccessUrl("/swagger-ui.html");
         // 配置未授权跳转页面
         filterFactoryBean.setUnauthorizedUrl("/errorPage/403");
@@ -115,6 +112,9 @@ public class ShiroConfiguration {
         filterChainDefinitionMap.put("/**", "authc");
         filterChainDefinitionMap.put("/*.*", "authc");
         filterFactoryBean.setFilterChainDefinitionMap(filterChainDefinitionMap);
+        Map<String, Filter> filtersMap = new HashMap<>();
+        filtersMap.put("authc", new ShiroLoginFilter());
+        filterFactoryBean.setFilters(filtersMap);
         log.info("shiroFilter注册完成");
         return filterFactoryBean;
     }
@@ -243,8 +243,8 @@ public class ShiroConfiguration {
      * @return
      */
     @Bean("credentialsMatcher")
-    public SimpleCredentialsMatcher simpleCredentialsMatcher (){
-        SimpleCredentialsMatcher simpleCredentialsMatcher = new SimpleCredentialsMatcher();
+    public MyCredentialMatcher simpleCredentialsMatcher (){
+        MyCredentialMatcher simpleCredentialsMatcher = new MyCredentialMatcher();
 //        simpleCredentialsMatcher.setRedisManager(redisManager());
 
         //如果密码加密,可以打开下面配置
