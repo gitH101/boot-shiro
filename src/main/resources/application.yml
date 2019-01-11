@@ -8,17 +8,17 @@ management:
 spring:
   application:
     name: ops-api
-  datasource:
-    url: jdbc:mysql://127.0.0.1:3306/test?useUnicode=true&characterEncoding=UTF-8&autoReconnect=true&useSSL=false&zeroDateTimeBehavior=convertToNull
-    username: root
-    password: 11
-    driver-class-name: com.mysql.jdbc.Driver
-    hikari:
-      minimum-idle: 5
-      maximum-pool-size: 15
-      auto-commit: true
-      idle-timeout: 3000
-      pool-name: DatebookHikariCP
+#  datasource:
+#    url: jdbc:mysql://127.0.0.1:3306/test?useUnicode=true&characterEncoding=UTF-8&autoReconnect=true&useSSL=false&zeroDateTimeBehavior=convertToNull
+#    username: root
+#    password: 11
+#    driver-class-name: com.mysql.jdbc.Driver
+#    hikari:
+#      minimum-idle: 5
+#      maximum-pool-size: 15
+#      auto-commit: true
+#      idle-timeout: 3000
+#      pool-name: DatebookHikariCP
 #  dubbo:
 ##    server: true
 #     registry: zookeeper://127.0.0.1:2181
@@ -81,3 +81,76 @@ pagehelper:
 logging:
   level:
     com.jumstc.ops.console.mapper: debug
+
+datasource:
+  hikari0:
+    jdbc-url: jdbc:mysql://127.0.0.1:3306/test?useUnicode=true&characterEncoding=UTF-8&autoReconnect=true&useSSL=false&zeroDateTimeBehavior=convertToNull
+    driver-class-name: com.mysql.jdbc.Driver
+    username: root
+    password: 11
+    minimum-idle: 10
+    maximum-pool-size: 200
+    pool-name: TS0HikariCP
+    connection-timeout: 30000
+    connection-test-query: select 1
+    max-lifetime: 600000
+    idle-timeout: 120000
+    data-source-properties: {cachePrepStmts: true, prepStmtCacheSize: 250, prepStmtCacheSqlLimit: 2048, useServerPrepStmts: true}
+  hikari1:
+    jdbc-url: jdbc:mysql://127.0.0.1:3306/test1?useUnicode=true&characterEncoding=UTF-8&autoReconnect=true&useSSL=false&zeroDateTimeBehavior=convertToNull
+    driver-class-name: com.mysql.jdbc.Driver
+    username: root
+    password: 11
+    minimum-idle: 10
+    maximum-pool-size: 200
+    pool-name: TS1HikariCP
+    connection-timeout: 30000
+    connection-test-query: select 1
+    max-lifetime: 600000
+    idle-timeout: 120000
+    data-source-properties: {cachePrepStmts: true, prepStmtCacheSize: 250, prepStmtCacheSqlLimit: 2048, useServerPrepStmts: true}
+
+shardingRule:
+  tables:
+    t_order:
+      actualDataNodes: ds_${0..1}.t_order
+      keyGeneratorColumnName: order_id
+    t_order_item:
+      actualDataNodes: ds_${0..1}.t_order_item
+      keyGeneratorColumnName: order_item_id
+  bindingTables:
+    - t_order,t_order_item
+
+  defaultDatabaseStrategy:
+    inline:
+      shardingColumn: user_id
+      algorithmExpression: ds_${user_id % 2}
+  defaultTableStrategy:
+    none:
+  defaultKeyGeneratorClassName: io.shardingsphere.core.keygen.DefaultKeyGenerator
+
+tables:
+  config:
+    dynamic: true
+  t_order:
+    dynamic: true
+    databaseStrategy: &db001
+      shardingColumns: order_id
+      algorithmClassName: com.dangdang.ddframe.rdb.sharding.config.yaml.algorithm.SingleAlgorithm
+    tableStrategy: &table001
+      shardingColumns: id
+      algorithmExpression: t_order_${id.longValue() % 2}
+
+  t_order_item:
+    dynamic: true
+    #绑定表中其余的表的策略与第一张表的策略相同
+    databaseStrategy: *db001
+    tableStrategy: *table001
+
+#默认数据库分片策略
+defaultDatabaseStrategy:
+  shardingColumns: order_id, user_id
+  algorithmExpression: t_order_${id.longValue() % 2}
+defaultTableStrategy:
+  shardingColumns: id, order_id
+  algorithmClassName: com.dangdang.ddframe.rdb.sharding.config.yaml.algorithm.MultiAlgorithm
