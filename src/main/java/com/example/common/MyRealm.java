@@ -9,9 +9,19 @@ import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import javax.annotation.Resource;
+import javax.sql.DataSource;
 import java.util.List;
 
 public class MyRealm extends AuthorizingRealm {
+
+    // 先加载 解决循环引用
+    @Resource(name = "ds_0")
+    private DataSource dataSource0;
+
+    @Resource(name = "ds_1")
+    private DataSource dataSource1;
+
     @Autowired
     private UserService userService;
 

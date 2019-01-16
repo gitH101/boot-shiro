@@ -9,7 +9,7 @@ public class UserRoleR {
     /**
      * <pre>
      * 
-     * 表字段 : cms_user_role_r.ID
+     * 表字段 : user_role_r.ID
      * </pre>
      */
     @Id
@@ -19,7 +19,7 @@ public class UserRoleR {
     /**
      * <pre>
      * 
-     * 表字段 : cms_user_role_r.USER_CODE
+     * 表字段 : user_role_r.USER_CODE
      * </pre>
      */
     private String userCode;
@@ -27,7 +27,7 @@ public class UserRoleR {
     /**
      * <pre>
      * 
-     * 表字段 : cms_user_role_r.ROLE_CODE
+     * 表字段 : user_role_r.ROLE_CODE
      * </pre>
      */
     private String roleCode;
@@ -35,7 +35,7 @@ public class UserRoleR {
     /**
      * <pre>
      * 创建人
-     * 表字段 : cms_user_role_r.CREATE_BY
+     * 表字段 : user_role_r.CREATE_BY
      * </pre>
      */
     private String createBy;
@@ -43,7 +43,7 @@ public class UserRoleR {
     /**
      * <pre>
      * 创建时间
-     * 表字段 : cms_user_role_r.CREATE_DATE
+     * 表字段 : user_role_r.CREATE_DATE
      * </pre>
      */
     private Date createDate;
@@ -51,7 +51,7 @@ public class UserRoleR {
     /**
      * <pre>
      * 修改人
-     * 表字段 : cms_user_role_r.MODIFIED_BY
+     * 表字段 : user_role_r.MODIFIED_BY
      * </pre>
      */
     private String modifiedBy;
@@ -59,7 +59,7 @@ public class UserRoleR {
     /**
      * <pre>
      * 修改时间
-     * 表字段 : cms_user_role_r.MODIFIED_DATE
+     * 表字段 : user_role_r.MODIFIED_DATE
      * </pre>
      */
     private Date modifiedDate;
@@ -67,7 +67,7 @@ public class UserRoleR {
     /**
      * <pre>
      * 排序
-     * 表字段 : cms_user_role_r.SORTNO
+     * 表字段 : user_role_r.SORTNO
      * </pre>
      */
     private Integer sortno;
@@ -75,7 +75,7 @@ public class UserRoleR {
     /**
      * <pre>
      * 数据状态
-     * 表字段 : cms_user_role_r.STATE
+     * 表字段 : user_role_r.STATE
      * </pre>
      */
     private Integer state;
@@ -83,10 +83,10 @@ public class UserRoleR {
     /**
      * <pre>
      * 获取：
-     * 表字段：cms_user_role_r.ID
+     * 表字段：user_role_r.ID
      * </pre>
      *
-     * @return cms_user_role_r.ID：
+     * @return user_role_r.ID：
      */
     public Integer getId() {
         return id;
@@ -95,11 +95,11 @@ public class UserRoleR {
     /**
      * <pre>
      * 设置：
-     * 表字段：cms_user_role_r.ID
+     * 表字段：user_role_r.ID
      * </pre>
      *
      * @param id
-     *            cms_user_role_r.ID：
+     *            user_role_r.ID：
      */
     public void setId(Integer id) {
         this.id = id;
@@ -108,10 +108,10 @@ public class UserRoleR {
     /**
      * <pre>
      * 获取：
-     * 表字段：cms_user_role_r.USER_CODE
+     * 表字段：user_role_r.USER_CODE
      * </pre>
      *
-     * @return cms_user_role_r.USER_CODE：
+     * @return user_role_r.USER_CODE：
      */
     public String getUserCode() {
         return userCode;
@@ -120,11 +120,11 @@ public class UserRoleR {
     /**
      * <pre>
      * 设置：
-     * 表字段：cms_user_role_r.USER_CODE
+     * 表字段：user_role_r.USER_CODE
      * </pre>
      *
      * @param userCode
-     *            cms_user_role_r.USER_CODE：
+     *            user_role_r.USER_CODE：
      */
     public void setUserCode(String userCode) {
         this.userCode = userCode == null ? null : userCode.trim();
@@ -133,10 +133,10 @@ public class UserRoleR {
     /**
      * <pre>
      * 获取：
-     * 表字段：cms_user_role_r.ROLE_CODE
+     * 表字段：user_role_r.ROLE_CODE
      * </pre>
      *
-     * @return cms_user_role_r.ROLE_CODE：
+     * @return user_role_r.ROLE_CODE：
      */
     public String getRoleCode() {
         return roleCode;
@@ -145,11 +145,11 @@ public class UserRoleR {
     /**
      * <pre>
      * 设置：
-     * 表字段：cms_user_role_r.ROLE_CODE
+     * 表字段：user_role_r.ROLE_CODE
      * </pre>
      *
      * @param roleCode
-     *            cms_user_role_r.ROLE_CODE：
+     *            user_role_r.ROLE_CODE：
      */
     public void setRoleCode(String roleCode) {
         this.roleCode = roleCode == null ? null : roleCode.trim();
@@ -158,10 +158,10 @@ public class UserRoleR {
     /**
      * <pre>
      * 获取：创建人
-     * 表字段：cms_user_role_r.CREATE_BY
+     * 表字段：user_role_r.CREATE_BY
      * </pre>
      *
-     * @return cms_user_role_r.CREATE_BY：创建人
+     * @return user_role_r.CREATE_BY：创建人
      */
     public String getCreateBy() {
         return createBy;
@@ -170,11 +170,11 @@ public class UserRoleR {
     /**
      * <pre>
      * 设置：创建人
-     * 表字段：cms_user_role_r.CREATE_BY
+     * 表字段：user_role_r.CREATE_BY
      * </pre>
      *
      * @param createBy
-     *            cms_user_role_r.CREATE_BY：创建人
+     *            user_role_r.CREATE_BY：创建人
      */
     public void setCreateBy(String createBy) {
         this.createBy = createBy == null ? null : createBy.trim();
@@ -183,10 +183,10 @@ public class UserRoleR {
     /**
      * <pre>
      * 获取：创建时间
-     * 表字段：cms_user_role_r.CREATE_DATE
+     * 表字段：user_role_r.CREATE_DATE
      * </pre>
      *
-     * @return cms_user_role_r.CREATE_DATE：创建时间
+     * @return user_role_r.CREATE_DATE：创建时间
      */
     public Date getCreateDate() {
         return createDate;
@@ -195,11 +195,11 @@ public class UserRoleR {
     /**
      * <pre>
      * 设置：创建时间
-     * 表字段：cms_user_role_r.CREATE_DATE
+     * 表字段：user_role_r.CREATE_DATE
      * </pre>
      *
      * @param createDate
-     *            cms_user_role_r.CREATE_DATE：创建时间
+     *            user_role_r.CREATE_DATE：创建时间
      */
     public void setCreateDate(Date createDate) {
         this.createDate = createDate;
@@ -208,10 +208,10 @@ public class UserRoleR {
     /**
      * <pre>
      * 获取：修改人
-     * 表字段：cms_user_role_r.MODIFIED_BY
+     * 表字段：user_role_r.MODIFIED_BY
      * </pre>
      *
-     * @return cms_user_role_r.MODIFIED_BY：修改人
+     * @return user_role_r.MODIFIED_BY：修改人
      */
     public String getModifiedBy() {
         return modifiedBy;
@@ -220,11 +220,11 @@ public class UserRoleR {
     /**
      * <pre>
      * 设置：修改人
-     * 表字段：cms_user_role_r.MODIFIED_BY
+     * 表字段：user_role_r.MODIFIED_BY
      * </pre>
      *
      * @param modifiedBy
-     *            cms_user_role_r.MODIFIED_BY：修改人
+     *            user_role_r.MODIFIED_BY：修改人
      */
     public void setModifiedBy(String modifiedBy) {
         this.modifiedBy = modifiedBy == null ? null : modifiedBy.trim();
@@ -233,10 +233,10 @@ public class UserRoleR {
     /**
      * <pre>
      * 获取：修改时间
-     * 表字段：cms_user_role_r.MODIFIED_DATE
+     * 表字段：user_role_r.MODIFIED_DATE
      * </pre>
      *
-     * @return cms_user_role_r.MODIFIED_DATE：修改时间
+     * @return user_role_r.MODIFIED_DATE：修改时间
      */
     public Date getModifiedDate() {
         return modifiedDate;
@@ -245,11 +245,11 @@ public class UserRoleR {
     /**
      * <pre>
      * 设置：修改时间
-     * 表字段：cms_user_role_r.MODIFIED_DATE
+     * 表字段：user_role_r.MODIFIED_DATE
      * </pre>
      *
      * @param modifiedDate
-     *            cms_user_role_r.MODIFIED_DATE：修改时间
+     *            user_role_r.MODIFIED_DATE：修改时间
      */
     public void setModifiedDate(Date modifiedDate) {
         this.modifiedDate = modifiedDate;
@@ -258,10 +258,10 @@ public class UserRoleR {
     /**
      * <pre>
      * 获取：排序
-     * 表字段：cms_user_role_r.SORTNO
+     * 表字段：user_role_r.SORTNO
      * </pre>
      *
-     * @return cms_user_role_r.SORTNO：排序
+     * @return user_role_r.SORTNO：排序
      */
     public Integer getSortno() {
         return sortno;
@@ -270,11 +270,11 @@ public class UserRoleR {
     /**
      * <pre>
      * 设置：排序
-     * 表字段：cms_user_role_r.SORTNO
+     * 表字段：user_role_r.SORTNO
      * </pre>
      *
      * @param sortno
-     *            cms_user_role_r.SORTNO：排序
+     *            user_role_r.SORTNO：排序
      */
     public void setSortno(Integer sortno) {
         this.sortno = sortno;
@@ -283,10 +283,10 @@ public class UserRoleR {
     /**
      * <pre>
      * 获取：数据状态
-     * 表字段：cms_user_role_r.STATE
+     * 表字段：user_role_r.STATE
      * </pre>
      *
-     * @return cms_user_role_r.STATE：数据状态
+     * @return user_role_r.STATE：数据状态
      */
     public Integer getState() {
         return state;
@@ -295,11 +295,11 @@ public class UserRoleR {
     /**
      * <pre>
      * 设置：数据状态
-     * 表字段：cms_user_role_r.STATE
+     * 表字段：user_role_r.STATE
      * </pre>
      *
      * @param state
-     *            cms_user_role_r.STATE：数据状态
+     *            user_role_r.STATE：数据状态
      */
     public void setState(Integer state) {
         this.state = state;

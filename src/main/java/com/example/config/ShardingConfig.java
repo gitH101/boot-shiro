@@ -1,13 +1,12 @@
 package com.example.config;
 
-import com.example.common.sphere.DatabaseShardingAlgorithm;
-import com.example.common.sphere.TablePreciseShardingAlgorithm;
-import com.example.common.sphere.TableRangeShardingAlgorithm;
+import com.example.common.sphere.*;
 import com.zaxxer.hikari.HikariDataSource;
 import io.shardingsphere.core.api.ShardingDataSourceFactory;
 import io.shardingsphere.core.api.config.ShardingRuleConfiguration;
 import io.shardingsphere.core.api.config.TableRuleConfiguration;
 import io.shardingsphere.core.api.config.strategy.StandardShardingStrategyConfiguration;
+import io.shardingsphere.core.keygen.DefaultKeyGenerator;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.context.properties.ConfigurationProperties;
@@ -41,11 +40,12 @@ public class ShardingConfig {
     @Bean(name = "shardingDataSource")
     public DataSource getDataSource(@Qualifier("ds_0") DataSource ds_0, @Qualifier("ds_1") DataSource ds_1) throws SQLException {
         ShardingRuleConfiguration shardingRuleConfig = new ShardingRuleConfiguration();
+        shardingRuleConfig.getTableRuleConfigs().add(getUserConfiguration());
         shardingRuleConfig.getTableRuleConfigs().add(getOrderTableRuleConfiguration());
-        shardingRuleConfig.getTableRuleConfigs().add(getOrderItemTableRuleConfiguration());
-        shardingRuleConfig.getBindingTableGroups().add("t_order, t_order_item");
+//        shardingRuleConfig.getTableRuleConfigs().add(getOrderItemTableRuleConfiguration());
+        shardingRuleConfig.getBindingTableGroups().add("user_info, t_order");
         shardingRuleConfig.setDefaultDatabaseShardingStrategyConfig(new StandardShardingStrategyConfiguration("user_id", new DatabaseShardingAlgorithm()));
-        shardingRuleConfig.setDefaultTableShardingStrategyConfig(new StandardShardingStrategyConfiguration("order_id", new TablePreciseShardingAlgorithm(), new TableRangeShardingAlgorithm()));
+        shardingRuleConfig.setDefaultTableShardingStrategyConfig(new StandardShardingStrategyConfiguration("id", new TablePreciseShardingAlgorithm(), new TableRangeShardingAlgorithm()));
         Map<String, DataSource> dataSourceMap = new HashMap<>();
         dataSourceMap.put("ds_0", ds_0);
         dataSourceMap.put("ds_1", ds_1);
@@ -53,20 +53,34 @@ public class ShardingConfig {
         return ShardingDataSourceFactory.createDataSource(dataSourceMap, shardingRuleConfig, new HashMap<String, Object>(), properties);
     }
 
-    private static TableRuleConfiguration getOrderTableRuleConfiguration() {
+    private static TableRuleConfiguration getUserConfiguration() {
         TableRuleConfiguration result = new TableRuleConfiguration();
-        result.setLogicTable("t_order");
-        result.setActualDataNodes("ds_${0..1}.t_order_${[0, 1]}");
-        result.setKeyGeneratorColumnName("order_id");
+        result.setLogicTable("user_info");
+        result.setActualDataNodes("ds_${0..1}.user_info");
+        result.setKeyGeneratorColumnName("id");
+        result.setKeyGenerator(new DefaultKeyGenerator());
+        result.setDatabaseShardingStrategyConfig(new StandardShardingStrategyConfiguration("id", new DatabaseShardingAlgorithm()));
         return result;
     }
 
-    private static TableRuleConfiguration getOrderItemTableRuleConfiguration() {
+    private static TableRuleConfiguration getOrderTableRuleConfiguration() {
         TableRuleConfiguration result = new TableRuleConfiguration();
-        result.setLogicTable("t_order_item");
-        result.setActualDataNodes("ds_${0..1}.t_order_item_${[0, 1]}");
+        result.setLogicTable("t_order");
+        // 动态生成表
+//        result.setActualDataNodes("ds_${0..1}.t_order_${[1901, 1902]}");
+        result.setTableShardingStrategyConfig(new StandardShardingStrategyConfiguration("create_time", new DatePreciseShardingAlgorithm("t_order"), new DateRangeShardingAlgorithm("t_order")));
+        result.setKeyGeneratorColumnName("id");
+        result.setKeyGenerator(new DefaultKeyGenerator());
         return result;
     }
+
+//    private static TableRuleConfiguration getOrderItemTableRuleConfiguration() {
+//        TableRuleConfiguration result = new TableRuleConfiguration();
+//        result.setLogicTable("t_order_item");
+//
+//        result.setActualDataNodes("ds_${0..1}.t_order_item_${[0, 1]}");
+//        return result;
+//    }
 
 
 }

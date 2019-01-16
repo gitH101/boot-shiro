@@ -15,7 +15,7 @@ public class UserInfo implements Serializable {
      */
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Long id;
 
     /**
      * <pre>
@@ -105,7 +105,7 @@ public class UserInfo implements Serializable {
      *
      * @return cms_user_info.ID：用户ID
      */
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
@@ -118,7 +118,7 @@ public class UserInfo implements Serializable {
      * @param id
      *            cms_user_info.ID：用户ID
      */
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
