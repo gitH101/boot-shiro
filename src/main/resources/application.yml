@@ -81,7 +81,7 @@ pagehelper:
 
 logging:
   level:
-    com.jumstc.ops.console.mapper: debug
+    com.example.mapper: debug
 
 datasource:
   hikari0:
