@@ -1,8 +1,8 @@
 package com.example.common.sphere;
 
 import com.google.common.collect.Range;
-import io.shardingsphere.core.api.algorithm.sharding.RangeShardingValue;
-import io.shardingsphere.core.api.algorithm.sharding.standard.RangeShardingAlgorithm;
+import io.shardingsphere.api.algorithm.sharding.RangeShardingValue;
+import io.shardingsphere.api.algorithm.sharding.standard.RangeShardingAlgorithm;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;

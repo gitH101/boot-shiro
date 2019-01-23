@@ -7,7 +7,7 @@ import java.util.Date;
 import java.util.List;
 
 public interface ShardingManager {
-    void insertUser(Long id);
+    void insertUser();
 
     UserInfo getUset(Long id);
 

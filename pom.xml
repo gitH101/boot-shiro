@@ -23,7 +23,7 @@
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <java.version>1.8</java.version>
         <mysql.version>5.1.34</mysql.version>
-        <sharding-sphere.version>3.0.0.M1</sharding-sphere.version>
+        <sharding-sphere.version>3.1.0</sharding-sphere.version>
     </properties>
     <dependencies>
 
@@ -212,6 +212,11 @@
         <dependency>
             <groupId>io.shardingsphere</groupId>
             <artifactId>sharding-core</artifactId>
+            <version>${sharding-sphere.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>io.shardingsphere</groupId>
+            <artifactId>sharding-jdbc-core</artifactId>
             <version>${sharding-sphere.version}</version>
         </dependency>
     </dependencies>

@@ -35,7 +35,7 @@ public class DubboTest {
 
     @Test
     public void testInsertUser(){
-        shardingManager.insertUser(11L);
+        shardingManager.insertUser();
     }
 
     @Test
@@ -45,7 +45,7 @@ public class DubboTest {
 
     @Test
     public void testInsertOrder(){
-        shardingManager.insertOrder(12L);
+        shardingManager.insertOrder(11L);
     }
 
     @Test

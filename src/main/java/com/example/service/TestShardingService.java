@@ -1,11 +1,13 @@
 package com.example.service;
 
 import com.alibaba.dubbo.config.annotation.Service;
+import com.alibaba.fastjson.JSONObject;
 import com.example.entity.TOrder;
 import com.example.entity.UserInfo;
 import com.example.interfaces.ShardingManager;
 import com.example.mapper.TOrderDao;
 import com.example.mapper.UserInfoDao;
+import io.shardingsphere.core.keygen.DefaultKeyGenerator;
 import org.springframework.beans.factory.annotation.Autowired;
 import tk.mybatis.mapper.entity.Example;
 
@@ -22,9 +24,8 @@ public class TestShardingService implements ShardingManager {
     private TOrderDao tOrderDao;
 
     @Override
-    public void insertUser(Long id){
+    public void insertUser(){
         UserInfo userInfo = new UserInfo();
-        userInfo.setId(id);
         userInfo.setUserCode("123");
         userInfo.setUserName("测试");
         userInfoDao.insertSelective(userInfo);
@@ -40,10 +41,12 @@ public class TestShardingService implements ShardingManager {
     @Override
     public void insertOrder(Long userId){
         TOrder order = new TOrder();
+//        order.setId(DefaultKeyGenerator.);
         order.setCreateTime(new Date());
         order.setInfo("xxx");
         order.setUserId(userId);
         tOrderDao.insertSelective(order);
+        System.out.println(JSONObject.toJSONString(order));
     }
 
     @Override

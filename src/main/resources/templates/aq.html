@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link type="text/css" rel="stylesheet" href="css/style.css"/>
+</head>
+<body>
+<div id="qt" class="middle" style="width:800px">
+    <div>电脑手机与我们的生活息息相关，本问卷是关于网络媒介依存症的自评问卷，请根据自己真实情况作答。此问卷仅供参考，不做专业指导。</div>
+
+    <div>
+        问卷发起：PHP小组<br/>
+        题目数量：24道正式题，4道信息确认题<br/>
+        反馈指标：6个<br/>
+        反馈报告字数：约1000字<br/>
+    </div>
+    <div>
+        <form id="form">
+            <div id="list"></div>
+            <div id="info">
+                <div><span>你的姓名或网名是:</span><input name="name" type="text"/></div>
+                <div><span>你的性别是:</span>
+                    <label><input name="sex" type="radio" value="男"/>男</label>
+                    <label><input name="sex" type="radio" value="女"/>女</label>
+                </div>
+                <div><span>你的年龄是:</span><input type="text" name="age"/></div>
+                <div><span>你的学历是:</span>
+                    <div>
+                        <label><input name="clg" type="radio" value="初等及中等教育"/>初等及中等教育</label>
+                        <label><input name="clg" type="radio" value="专科"/>专科</label>
+                        <label><input name="clg" type="radio" value="本科"/>本科</label>
+                        <label><input name="clg" type="radio" value="硕士研究生"/>硕士研究生</label>
+                        <label><input name="clg" type="radio" value="博士研究生"/>博士研究生</label>
+                    </div>
+                </div>
+            </div>
+            <div id="submit">
+                <button class="btn" type="button" id="sub">提交</button>
+            </div>
+        </form>
+    </div>
+</div>
+<div id="rp" class="middle" style="display: none;width: 800px">
+    <div class="title">
+        <h2>网络媒介依存症问卷报告单</h2>
+    </div>
+    <div class="info">
+        <div>姓名：<span id="name"></span></div>
+        <div>性别：<span id="sex"></span></div>
+        <div>年龄：<span id="age"></span></div>
+        <div>编号：<span id="id"></span></div>
+    </div>
+    <div>
+        1976年，德弗勒（M.L.Defleur）和鲍尔基洛奇（Ball-Rokeach）提出了媒介依存理论（Media-system dependency），其本质是媒介与个体、群体、组织和其他社会系统之间具有一种依存关系。媒介依存症的具体表现分为：网络沉湎、价值取向依赖、满足于网络互动而逃避现实互动、拥有易感性人格等。本问卷分为六个维度，以期较为完整的描述你的网络媒介依存症的症状，接下来是你在各分维度上的结果。
+    </div>
+    <div class="chart">
+        <canvas  id="chart">不支持canvas</canvas>
+    </div>
+    <div class="introduce">
+        <div>
+            <div>网断人亡 <div id="qstar0"></div></div>
+            <div>
+                该项分数指的是你的网络沉湎程度，具体表现为过渡沉湎网络无法自拔，其中包括突显性、情绪改变、耐受性、戒断等。
+            </div>
+        </div>
+        <div>
+            <div>再造之恩 <div id="qstar1"></div></div>
+            <div>
+                该项分数指的是价值取向依赖的程度，具体表现为本身缺少对事物的理解以及对信息涵盖价值观的正确判断，价值和行为选择一切必须从网络中寻找依据。
+            </div>
+        </div>
+        <div>
+            <div>超凡脱俗 <div id="qstar2"></div></div>
+            <div>
+                该项分数指的是网络与现实的矛盾程度，具体表现为在网络世界中更容易获得很高的精神满足与成就感从而逃避现实，甚至已经与现实环境产生很大冲突。
+            </div>
+        </div>
+        <div>
+            <div>天资过人 <div id="qstar3"></div></div>
+            <div>
+                该项分数指的是你对该症的易感性程度，具体表现为对网络媒介综合征的抵抗力偏低，在孤独感、感觉寻求、冲动性、内向性、忧虑依赖、现实逃避性中具有一种或多种特质。
+            </div>
+        </div>
+        <div>
+            <div>播穅眯目 <div id="qstar4"></div></div>
+            <div>
+                该项分数指的是你的本真迷失程度，具体表现为身处网络之中受到群体的压力和趋同心理严重影响，并且毫不察觉的从一个受动者转变为施动者。
+            </div>
+        </div>
+        <div>
+            <div>不明觉厉 <div id="qstar5"></div></div>
+            <div>
+                该项分数指的是你拒绝深度思考的程度，具体表现为迷恋于浅显的、娱乐化、不求深刻内涵的低端信息内容，独立思维能力下降，容易被网络舆论引导。
+            </div>
+        </div>
+    </div>
+    <div class="squre">
+        <div><div id="name2"></div>的网络媒介依存症：<span id="result"></span></div>
+    </div>
+    <div class="foot">
+        <div>问卷负责人：</div> <div>问卷负责人：</div><div>签发时间：<span id="date"></span></div>
+    </div>
+</div>
+<script type="text/javascript" src="js/zepto-min.js"></script>
+<script type="text/javascript" src="js/render.js"></script>
+</body>
+</html>

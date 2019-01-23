@@ -1,8 +1,8 @@
 package com.example.common.sphere;
 
 
-import io.shardingsphere.core.api.algorithm.sharding.PreciseShardingValue;
-import io.shardingsphere.core.api.algorithm.sharding.standard.PreciseShardingAlgorithm;
+import io.shardingsphere.api.algorithm.sharding.PreciseShardingValue;
+import io.shardingsphere.api.algorithm.sharding.standard.PreciseShardingAlgorithm;
 
 import java.util.Collection;
 

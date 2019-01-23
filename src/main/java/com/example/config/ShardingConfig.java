@@ -2,11 +2,10 @@ package com.example.config;
 
 import com.example.common.sphere.*;
 import com.zaxxer.hikari.HikariDataSource;
-import io.shardingsphere.core.api.ShardingDataSourceFactory;
-import io.shardingsphere.core.api.config.ShardingRuleConfiguration;
-import io.shardingsphere.core.api.config.TableRuleConfiguration;
-import io.shardingsphere.core.api.config.strategy.StandardShardingStrategyConfiguration;
-import io.shardingsphere.core.keygen.DefaultKeyGenerator;
+import io.shardingsphere.api.config.rule.ShardingRuleConfiguration;
+import io.shardingsphere.api.config.rule.TableRuleConfiguration;
+import io.shardingsphere.api.config.strategy.StandardShardingStrategyConfiguration;
+import io.shardingsphere.shardingjdbc.api.ShardingDataSourceFactory;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.context.properties.ConfigurationProperties;
@@ -58,7 +57,6 @@ public class ShardingConfig {
         result.setLogicTable("user_info");
         result.setActualDataNodes("ds_${0..1}.user_info");
         result.setKeyGeneratorColumnName("id");
-        result.setKeyGenerator(new DefaultKeyGenerator());
         result.setDatabaseShardingStrategyConfig(new StandardShardingStrategyConfiguration("id", new DatabaseShardingAlgorithm()));
         return result;
     }
@@ -70,7 +68,6 @@ public class ShardingConfig {
 //        result.setActualDataNodes("ds_${0..1}.t_order_${[1901, 1902]}");
         result.setTableShardingStrategyConfig(new StandardShardingStrategyConfiguration("create_time", new DatePreciseShardingAlgorithm("t_order"), new DateRangeShardingAlgorithm("t_order")));
         result.setKeyGeneratorColumnName("id");
-        result.setKeyGenerator(new DefaultKeyGenerator());
         return result;
     }
 
