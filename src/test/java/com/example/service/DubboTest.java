@@ -53,4 +53,17 @@ public class DubboTest {
         List<TOrder> tOrders = shardingManager.getOrdersByTime(new Date(System.currentTimeMillis() - 1000 * 60 * 60 * 12), new Date(),12L);
         System.out.println(JSONObject.toJSONString(tOrders));
     }
+
+    public void testGet(Object object){
+        System.out.println("object");
+    }
+
+    public void testGet(String string){
+        System.out.println("string");
+    }
+
+    @Test
+    public void test(){
+        testGet((Object) "12");
+    }
 }
